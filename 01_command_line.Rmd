@@ -1,6 +1,6 @@
 ---
 title: "Workshop 1: Introduction to the Command Line"
-author: "Your Name"
+author: "Brihatee Mattapullut"
 date: "`r Sys.Date()`"
 output: html_document
 ---
@@ -27,11 +27,95 @@ Replace the text below each heading with your own notes. Copy each command you r
 ## Basic unix commands
 
 Notes on `pwd`, `ls`, `cd` and how unix commands are put together.
+cd - change directory
+pwd - print working directory
+
+```{bash}
+ls -l
+```
+
+```{bash}
+ls -lr
+```
+
+```{bash}
+ls -l /usr
+```
+
+creating the fasta file
+```{bash}
+cd ~/mb5370-workshops/command_line
+echo $'>fasta_header\nMMGTSRCVILLFALLLWAANAAPPEIHTTRPNVPEEIKRPNSTEIETPAVKQLETPSIFL\nLTTLEVAEADVDSTLETMKDRNKKNSAKLSKIGNNMKSLLSVFSVFGGFLSLLSVVTTTS' > test.fasta
+```
+
 
 ## Viewing and searching files
 
 Notes on `cat`, `head`, `grep` and `man`.
 
+cat is used to view the file 
+
+```{bash}
+cat test.fasta
+```
+
+head is used to look at few lines of the file if file is huge. 
+head usually displays the first 10 lines and -2 only displays the first 2 lines 
+
+```{bash}
+head -2 test.fasta
+```
+
+grep - globally search a regular expression and print
+grep - finds line matching specific strings in files
+
+- to find the fasta header - include quotes in the command
+```{bash}
+grep '^>' test.fasta
+```
+
+- finding a specific amino acid sequence
+```{bash}
+grep KDRNKKNSAK test.fasta
+```
+man grep - view the flags
+```{bash}
+man grep
+```
+
+grep has approx. 50 flags
+some of the flags:
+1. -i -> case insensitive match
+2. -n -> report line number of matches
+3. -c -> count all files that contain the pattern
+4. -w -> match whole words only
+
+using the -n command it will give the line on which the flag is
+```{bash}
+grep -n KDRNKKNSAK test.fasta
+```
+
 ## Sequence file formats
 
 Notes on the fasta and fastq formats.
+FASTA - creates and stores a clean, finished reference sequences - like final textbook 
+FASTQ - stores raw data straight from sequencer incl. error-check quality scores (like rough field notes).
+
+example of FASTA (clean and simple)
+- >Reference_Sequence_01
+ ATCGATCGATCGATCGATCG
+ 
+• 2 lines per record
+	1. Header line starting with >
+	2. Sequence data (DNA, RNA, or amino acids)
+	
+example of FASTQ (Raw & Includes Quality Scores)
+- @ Sequencer_Read_01
+ATCGATCGATCGATCGATCG
++
+FFFFFGGGGGIIIIIRRRRR
+
+• 4 lines per record
+1. Header line starting with @
+2. Sequence data (nucleotides)
+3. Separator line starting with +
