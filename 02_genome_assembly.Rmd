@@ -15,6 +15,7 @@ knitr::opts_hooks$set(engine = function(options) {
 })
 ```
 
+this chunk above is running on R, but it will not run all the bash chunks in the document. to not have a bash chunk run everytime, you also do {bash, eval=FALSE} or just remove the {} in bash chunk so now R thinks it is a R chunk and will not run it. 
 Notes for [Workshop 2](https://mb5370.bioinformatics.guide/workshop2.html). Run the commands for this workshop in the Terminal, from inside the folder named under each heading. Copy each command you run into a bash chunk.
 
 ## Redbean assembly
@@ -61,6 +62,29 @@ amtp4 - low coverage
 amtp2_20x - hogh coverage
 
 ## Flye assembly
+small flye results:
+stats for assembly.fasta
+sum = 5193388, n = 77, ave = 67446.60, largest = 374326
+N50 = 119681, n = 16
+N60 = 99731, n = 20
+N70 = 73541, n = 26
+N80 = 48300, n = 35
+N90 = 31576, n = 48
+N100 = 2777, n = 77
+N_count = 0
+Gaps = 0
+
+large file results:
+stats for assembly.fasta
+sum = 7449544, n = 52, ave = 143260.46, largest = 3378344
+N50 = 1775300, n = 2
+N60 = 1775300, n = 2
+N70 = 113574, n = 3
+N80 = 76179, n = 11
+N90 = 44872, n = 24
+N100 = 5575, n = 52
+N_count = 0
+Gaps = 0
 
 Commands run in `flye_genome/`.
 
